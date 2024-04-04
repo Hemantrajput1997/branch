@@ -27,7 +27,7 @@ jobs:
         cd /var/www/html/main
         sudo git pull origin main "
     - name: Deploy to AWS (stage branch)
-      if: false github.ref == 'refs/heads/hemant'
+      if: github.ref == 'refs/heads/hemant'
       run: |
         ssh -o StrictHostKeyChecking=no -i $HOME/.ssh/ ubuntu@18.222.208.212 "
         cd /var/www/html/hemant
