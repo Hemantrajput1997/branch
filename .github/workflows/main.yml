@@ -1,10 +1,9 @@
-name: Connect to Ubuntu server
+name: Deploy to AWS
 
 on:
   push:
     branches:
-      - hemant
-      - main
+      - main  # Change this to your main branch name
 
 jobs:
   deploy:
@@ -20,15 +19,8 @@ jobs:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
         # You'll need to add the corresponding public key to your AWS server's authorized_keys files
 
-    - name: Deploy to AWS (main branch)
-      if: github.ref == 'refs/heads/main'
+    - name: Deploy to AWS
       run: |
         ssh -o StrictHostKeyChecking=no -i $HOME/.ssh/ ubuntu@18.222.208.212 "
-        cd /var/www/html/main
-        sudo git pull origin main "
-    - name: Deploy to AWS (stage branch)
-      if: github.ref == 'refs/heads/hemant'
-      run: |
-        ssh -o StrictHostKeyChecking=no -i $HOME/.ssh/ ubuntu@18.222.208.212 "
-        cd /var/www/html/hemant
-        sudo git pull origin hemant "
+        cd /var/www/html/new
+        sudo git pull origin main   "
