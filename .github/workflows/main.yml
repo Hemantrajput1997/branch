@@ -23,4 +23,6 @@ jobs:
       run: |
         ssh -o StrictHostKeyChecking=no -i $HOME/.ssh/ ubuntu@18.222.208.212 "
         cd /var/www/html/main
+        git add .
+        git commit -m "server commit"
         sudo git pull origin main   "
